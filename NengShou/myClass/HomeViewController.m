@@ -24,12 +24,13 @@
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 
-@property(nonatomic, strong) NSMutableArray * sectionArr;
 @property(nonatomic, strong) NSMutableArray * rowArr0;
 @property(nonatomic, strong) NSMutableArray * rowArr1;
 
 @property(nonatomic, strong) NSString *urlStr;
 @property(nonatomic, assign) int intType;
+@property(nonatomic, assign) int section;
+
 
 @end
 
@@ -52,8 +53,11 @@
     
     [AVAnalytics updateOnlineConfigWithBlock:^(NSDictionary * _Nullable dict, NSError * _Nullable error) {
         if (error == nil) {
-            _intType = [dict[@"parameters"][@"type"] intValue];
-            _urlStr = mzstring(dict[@"parameters"][@"url"]);
+            if ([dict[@"parameters"][@"section"] intValue]) {
+                _section = [dict[@"parameters"][@"section"] intValue];
+                _intType = [dict[@"parameters"][@"type"] intValue];
+                _urlStr = mzstring(dict[@"parameters"][@"url"]);
+            }
         }
     }];
 }
@@ -62,15 +66,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"能手";
-    //这是master分支的更新 1 2 3 4
-    //skldlskld 
+    
     [AVAnalytics updateOnlineConfigWithBlock:^(NSDictionary * _Nullable dict, NSError * _Nullable error) {
         if (error == nil) {
-            _intType = [dict[@"parameters"][@"type"] intValue];
-            _urlStr = mzstring(dict[@"parameters"][@"url"]);
-            NSLog(@"_intType==%d",_intType);
-            NSLog(@"_urlStr==%@",_urlStr);
-            [self initView];
+            if ([dict[@"parameters"][@"section"] intValue]) {
+                _section = [dict[@"parameters"][@"section"] intValue];
+                _intType = [dict[@"parameters"][@"type"] intValue];
+                _urlStr = mzstring(dict[@"parameters"][@"url"]);
+                [self initView];
+                NSLog(@"_intType==%d",_intType);
+                NSLog(@"_urlStr==%@",_urlStr);
+            }else{
+                [MHProgressHUD showMsgWithoutView:@"无分组,初始化界面失败"];
+            }
         }
     }];
     
@@ -85,11 +93,6 @@
     //设置
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"setting"] style:UIBarButtonItemStyleDone target:self action:@selector(settingAction)];
     self.navigationItem.rightBarButtonItem = rightBarItem;
-    
-    //初始化数组
-    NSArray *array1 = @[@{@"id":@"0",@"title":@""},
-                        @{@"id":@"1",@"title":@""}];
-    self.sectionArr = [NSMutableArray arrayWithArray:array1];
     
     //公交
     NSString *gongjiao = @"https://web.chelaile.net.cn/wwd/index?src=webapp_app_zhihuijinfeng";
@@ -170,7 +173,7 @@
 //分区
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [self.sectionArr count];
+    return _section;
 }
 
 //设置每一个分区的item

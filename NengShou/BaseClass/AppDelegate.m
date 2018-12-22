@@ -37,11 +37,11 @@
     
     
 //    if ([NSStrObject getAccount]) {
-        HomeViewController *home = [[HomeViewController alloc] init];
-        MHNavViewController *nav = [[MHNavViewController alloc] initWithRootViewController:home];
-        self.window.rootViewController = nav;
+//        HomeViewController *home = [[HomeViewController alloc] init];
+//        MHNavViewController *nav = [[MHNavViewController alloc] initWithRootViewController:home];
+//        self.window.rootViewController = nav;
 //    }else{
-//        self.window.rootViewController = [[LoginViewController alloc] init];
+        self.window.rootViewController = [[LoginViewController alloc] init];
 //    }
 
     [NSThread sleepForTimeInterval:1.0];

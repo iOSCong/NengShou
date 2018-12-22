@@ -173,6 +173,7 @@ static HttpRequest *httpRequest = nil;
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     //如果报接受类型不一致请替换一致text/html或别的
 //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/javascript", @"text/html", @"text/plain", nil];
+    
     //设置超时时间
     [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
     manager.requestSerializer.timeoutInterval = 30.f;

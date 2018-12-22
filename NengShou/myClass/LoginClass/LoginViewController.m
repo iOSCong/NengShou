@@ -48,7 +48,10 @@
     //登录
     [wsLoginV setClickLoginBlock:^(NSString *textField1Text, NSString *textField2Text) {
         if (![textField1Text isEqualToString:@""] && ![textField2Text isEqualToString:@""]) {
+            [MHProgressHUD showProgress:@"正在登录" inView:self.view];
             [AVUser logInWithUsernameInBackground:textField1Text password:textField2Text block:^(AVUser *user, NSError *error){
+                [MHProgressHUD hide];
+                NSLog(@"user===%@",user);
                 if (user) {
                     //存储账户密码
                     [NSStrObject saveAccount:textField1Text];
@@ -70,11 +73,15 @@
     //注册
     [wsLoginV setClickLostBlock:^(NSString *textField1Text, NSString *textField2Text) {
         if (![textField1Text isEqualToString:@""] && ![textField2Text isEqualToString:@""]) {
+            [MHProgressHUD showProgress:@"正在注册" inView:self.view];
             AVUser *user = [AVUser user];
+            user.username = textField1Text;
+            user.password = textField2Text;
             [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     // 注册成功直接登录
-                    [AVUser logInWithUsernameInBackground:textField1Text password:textField2Text block:^(AVUser *user, NSError *error){
+                    [AVUser logInWithUsernameInBackground:user.username password:user.password block:^(AVUser *user, NSError *error){
+                        [MHProgressHUD hide];
                         if (user) {
                             HomeViewController *home = [[HomeViewController alloc] init];
                             MHNavViewController *nav = [[MHNavViewController alloc] initWithRootViewController:home];

@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "AboutViewController.h"
+#import "LoginViewController.h"
 
 @interface SettingViewController () <UITableViewDelegate,UITableViewDataSource>
 //@property(nonatomic,retain)UITableView *tableView;
@@ -23,6 +24,19 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    UIView *logoutView = [[UIView alloc] initWithFrame:mz_frame(0, 0, mz_width, 40)];
+    UIButton *logOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    logOutBtn.frame = mz_frame(20, 0, mz_width-40, logoutView.frame.size.height);
+    [logOutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [logOutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    logOutBtn.backgroundColor = mz_yiDongBlueColor;
+    [logOutBtn addTarget:^(UIButton *button) {
+        [AVUser logOut];
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[LoginViewController  alloc]init];
+    }];
+    [logoutView addSubview:logOutBtn];
+    self.tableView.tableFooterView = logoutView;
     
 }
 
