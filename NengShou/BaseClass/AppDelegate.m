@@ -36,13 +36,14 @@
     
     
     
-//    if ([NSStrObject getAccount]) {
-//        HomeViewController *home = [[HomeViewController alloc] init];
-//        MHNavViewController *nav = [[MHNavViewController alloc] initWithRootViewController:home];
-//        self.window.rootViewController = nav;
-//    }else{
+    if ([NSStrObject getAccount]) {
+        HomeViewController *home = [[HomeViewController alloc] init];
+        MHNavViewController *nav = [[MHNavViewController alloc] initWithRootViewController:home];
+//                [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+        self.window.rootViewController = nav;
+    }else{
         self.window.rootViewController = [[LoginViewController alloc] init];
-//    }
+    }
 
     [NSThread sleepForTimeInterval:1.0];
     [self.window makeKeyWindow];
