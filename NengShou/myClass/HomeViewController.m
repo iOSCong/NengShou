@@ -63,7 +63,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"能手";
     //这是master分支的更新 1 2 3 4
-    
+    //skldlskld 
     [AVAnalytics updateOnlineConfigWithBlock:^(NSDictionary * _Nullable dict, NSError * _Nullable error) {
         if (error == nil) {
             _intType = [dict[@"parameters"][@"type"] intValue];
