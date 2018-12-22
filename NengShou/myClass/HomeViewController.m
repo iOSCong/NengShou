@@ -66,7 +66,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"能手";
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     [AVAnalytics updateOnlineConfigWithBlock:^(NSDictionary * _Nullable dict, NSError * _Nullable error) {
         if (error == nil) {
             if ([dict[@"parameters"][@"section"] intValue]) {
@@ -87,8 +87,6 @@
 
 - (void)initView
 {
-    //    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addViewShow)];
-//    self.navigationItem.rightBarButtonItem = rightBarItem;
     
     //设置
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"setting"] style:UIBarButtonItemStyleDone target:self action:@selector(settingAction)];
