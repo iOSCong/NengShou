@@ -731,7 +731,6 @@
 				D84AD6EB21C9363000D11853 /* Sources */,
 				D84AD6EC21C9363000D11853 /* Frameworks */,
 				D84AD6ED21C9363000D11853 /* Resources */,
-				161702248185F0532B56D65B /* [CP] Embed Pods Frameworks */,
 				122D6114C909DDDB669E8B9C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -876,32 +875,18 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-NengShou/Pods-NengShou-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-NengShou/Pods-NengShou-resources.sh",
 				"${PODS_ROOT}/AVOSCloud/AVOS/AVOSCloud/AVOSCloud_Art.inc",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AVOSCloud_Art.inc",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NengShou/Pods-NengShou-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		161702248185F0532B56D65B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NengShou/Pods-NengShou-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NengShou/Pods-NengShou-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BC6D57A9CDF36D21FA969FD0 /* [CP] Check Pods Manifest.lock */ = {
